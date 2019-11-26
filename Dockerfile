@@ -36,10 +36,11 @@ RUN apt-get update && apt-get install -y \
 	wget \
   && rm -rf /var/lib/apt/lists/*
 
-RUN locale-gen en_US.UTF-8
+#RUN locale-gen en_US.UTF-8
+RUN localedef pt_BR -i pt_BR -f CP1252
 # We cannot use update-locale because docker will not use the env variables
 # configured in /etc/default/locale so we need to set it manually.
-ENV LC_ALL=en_US.UTF-8 \
+ENV LC_ALL=pt_BR.CP1252 \
 	SHELL=/bin/bash
 
 RUN adduser --gecos '' --disabled-password coder && \
